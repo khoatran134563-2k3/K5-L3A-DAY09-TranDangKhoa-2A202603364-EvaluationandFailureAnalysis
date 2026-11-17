@@ -8,7 +8,8 @@
 - Seeds: 11, 22, 33, 44, 55.
 - Nhãn tách riêng: `src/data/eval/labels_v1.json`.
 - Metric spec: `src/config/metric_spec.yaml`, version 1.0.
-- Code/grader commit: bổ sung hash commit triển khai sau khi commit.
+- Code và grader Core: commit `bb1cbc5`.
+- Nền Lab 8: repo nhóm, commit `9e0996a`.
 - Môi trường đã kiểm tra: Windows, Python 3.13.14, MockLLM,
   pydantic-evals 2.68.0, NumPy 2.2.6, SciPy 1.15.3.
 
