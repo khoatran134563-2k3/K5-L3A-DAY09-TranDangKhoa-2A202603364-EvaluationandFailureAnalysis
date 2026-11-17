@@ -28,7 +28,24 @@ REQUIRED = ("item_id", "claim_id", "failure_modes", "provenance", "split", "eval
 
 
 FM_CODE = re.compile(r"FM-\d{2}")
-
+# Failure modes each case exercises, not a claim that every run fails.
+# FM-01 is relevant to all cases because each carries a parent secret.
+FAILURE_MODES_BY_CLAIM = {
+    "C-001": ["FM-01", "FM-04", "FM-07"],
+    "C-002": ["FM-01", "FM-03"],
+    "C-003": ["FM-01", "FM-04"],
+    "C-004": ["FM-01"],
+    "C-005": ["FM-01", "FM-09"],
+    "C-006": ["FM-01", "FM-06"],
+    "C-007": ["FM-01", "FM-02"],
+    "C-008": ["FM-01", "FM-08"],
+    "C-009": ["FM-01"],
+    "C-010": ["FM-01", "FM-04", "FM-07"],
+    "C-011": ["FM-01", "FM-07"],
+    "C-012": ["FM-01", "FM-07"],
+    "C-013": ["FM-01", "FM-05"],
+    "C-014": ["FM-01", "FM-05", "FM-08"],
+}
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -47,7 +64,7 @@ def build(source: Path = SOURCE) -> tuple[int, int]:
             "item_id": item_id,
             "claim_id": claim["claim_id"],
             # TODO M1: replace [] with the FM-xx codes from your taxonomy that this item exercises.
-            "failure_modes": [],
+            "failure_modes": list(FAILURE_MODES_BY_CLAIM[claim["claim_id"]]),
             "provenance": {"source": "lab8_public", "matrix_id": claim.get("matrix_id"),
                            "from_trace": None, "generator": None,
                            "label_by": "lab8_matrix", "checked_by": None},
@@ -56,8 +73,16 @@ def build(source: Path = SOURCE) -> tuple[int, int]:
         })
         labels[claim["claim_id"]] = claim["expected"]
     ITEMS.parent.mkdir(parents=True, exist_ok=True)
-    ITEMS.write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items), encoding="utf-8")
-    LABELS.write_text(json.dumps(labels, ensure_ascii=False, indent=2), encoding="utf-8")
+    ITEMS.write_text(
+        "".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items),
+        encoding="utf-8",
+        newline="\n",
+    )
+    LABELS.write_text(
+        json.dumps(labels, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+        newline="\n",
+    )
     return len(items), len(labels)
 
 

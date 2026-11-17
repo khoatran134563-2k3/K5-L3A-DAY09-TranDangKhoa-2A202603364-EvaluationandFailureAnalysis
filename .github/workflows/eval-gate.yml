@@ -11,7 +11,13 @@ jobs:
       - uses: actions/checkout@v7
         with: {persist-credentials: false}
       - id: has
-        run: "test -d src/lab8 && echo lab8=1 >> \"$GITHUB_OUTPUT\" || echo skip, overlay without src/lab8"
+        shell: bash
+        run: |
+          if test -d src/lab8; then
+            echo "lab8=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip, overlay without src/lab8"
+          fi
 
   eval-gate:
     needs: detect
@@ -71,7 +77,13 @@ jobs:
       - uses: actions/checkout@v7
         with: {persist-credentials: false}
       - id: has
-        run: "test -f reports/baseline_v2.json && echo v2=1 >> \"$GITHUB_OUTPUT\" || echo skip, no baseline_v2"
+        shell: bash
+        run: |
+          if test -f reports/baseline_v2.json; then
+            echo "v2=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip, no baseline_v2"
+          fi
       - if: steps.has.outputs.v2
         uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
         with: {python-version: "3.13", activate-environment: true, enable-cache: true, cache-dependency-glob: "src/requirements*.txt"}
