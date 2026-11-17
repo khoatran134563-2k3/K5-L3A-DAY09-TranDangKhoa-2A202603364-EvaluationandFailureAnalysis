@@ -3,7 +3,7 @@
 ## Phiên bản và khả năng tái lập
 
 - Người thực hiện / gate owner: Trần Đăng Khoa — 2A202603364.
-- Eval set: v1, SHA `298ef23f21e9`.
+- Eval set: v1, SHA `8a2279fadcc9`.
 - Nguồn: lab8_public; 14 item × 5 seed = 70 trial mỗi shape.
 - Seeds: 11, 22, 33, 44, 55.
 - Nhãn tách riêng: `src/data/eval/labels_v1.json`.
@@ -16,11 +16,11 @@
 ## Report
 
 - Baseline: `src/reports/baseline_v1.json`,
-  run ID `E-swarm-20261117-298e`.
+  run ID `E-swarm-20261118-8a22`.
 - Fixed: `src/reports/eval_fixed.json`,
-  run ID `E-fixed-20261117-298e`.
+  run ID `E-fixed-20261118-8a22`.
 - Regression: `src/reports/eval_seeded_regression.json`,
-  run ID `E-seeded_regression-20261117-298e`.
+  run ID `E-seeded_regression-20261118-8a22`.
 
 ## Metric và ngưỡng
 

@@ -6,10 +6,10 @@ Giữ nguyên tính năng xử lý claim của Lab 8. Bổ sung eval set có phi
 grader, judge calibration và gate kiểm soát regression trước khi merge.
 
 Bằng chứng:
-- Baseline: E-swarm-20261117-298e.
-- Fixed: E-fixed-20261117-298e.
-- Regression: E-seeded_regression-20261117-298e.
-- Eval set SHA: 298ef23f21e9.
+- Baseline: E-swarm-20261118-8a22.
+- Fixed: E-fixed-20261118-8a22.
+- Regression: E-seeded_regression-20261118-8a22.
+- Eval set SHA: 8a2279fadcc9.
 
 ## 2. Phạm vi pilot
 
@@ -23,7 +23,7 @@ Bằng chứng:
 
 ## 3. Định nghĩa chạy đúng
 
-Baseline bên dưới lấy từ report E-swarm-20261117-298e.
+Baseline bên dưới lấy từ report E-swarm-20261118-8a22.
 
 | Metric | Ngưỡng | Chặn merge? | Baseline |
 |---|---|---|---:|
